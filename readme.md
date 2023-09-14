@@ -104,7 +104,7 @@
 
 - Boost升压。下图左侧为非同步Boost电路，MOSFET对地导通时为电感充能，二极管在此处起到续流和防倒灌作用。右侧为同步Boost电路。用MOSFET替代二极管，在适当的控制下实现了二极管的功能。
 
-    ![boost_asynchronous_synchronous](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/boost_asynchronous_synchronous.png)通过伏秒平衡定律可推导Boost电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=\frac{1}{D}$ ，其中 ${V_{out}}$ 为输出电压，$V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比（注意是上管）。
+    ![boost_asynchronous_synchronous](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/boost_asynchronous_synchronous.png)通过伏秒平衡定律可推导Boost电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=\frac{1}{D}$ ，其中 ${V_{out}}$ 为输出电压， $V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比（注意是上管）。
 
   受限于篇幅，在此省略伏秒平衡定律的具体推导过程。
 
