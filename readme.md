@@ -321,7 +321,7 @@
   3. 若底盘电压持续大于 29V 但小于 30V 超过 12ms，则进入过压状态。
   4. 若底盘电压持续大于 30V 但小于 31V 超过 3ms，则进入过压状态。
   5. 当 A 相电压小于 27V，B 相电压小于 31V，过压锁定自动解除，模块自动尝试重新启动。
-- Buckboost 故障
+- Buck-Boost 故障
 
   - 由于校准误差，代码跑飞或逻辑bug，局部短路等问题，模块可能会出现升降压部分工作异常的情况，当检测到此部分电路工作异常，模块进入锁定状态，关断输出，且不会自动尝试重新启动，需要用户手动重置。
 - 短路
@@ -420,7 +420,9 @@
 
 <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/pcb_rendering_cap_array_bottom.png" alt="pcb_rendering_cap_array_bottom" style="zoom:67%;" />
 
-Layout 参考
+*Layout 参考*
+
+
 
 该模块layout较为极限，所有电容紧贴排列。为了加强散热，使用四层板。其中内层1、2与顶层铺铜相同，起导热作用。底层放置MOS与芯片等元件，并利用开窗导线减小电阻。过充测试时，使用2.5A电流长时间对电容组进行充电，电容组未出现严重过热情况，电容未出现过充情况。
 
