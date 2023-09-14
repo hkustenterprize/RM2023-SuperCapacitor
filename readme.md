@@ -102,7 +102,7 @@
 
 - Buck降压。下图左侧为非同步Buck电路，肖特基二极管起到为电感续流的作用。右侧为同步Buck电路，用MOSFET替代了二极管，带来了更低的压降与更灵活的控制。同步Buck电路中，CCM模式下，MOSFET经过**控制**，能够在电流正向的时候导通、反向的时候断开，实现了二极管的功能。
 
-  <img src="image/buck_asynchronous_synchronous.png" alt="image-20230501022459277" style="zoom: 80%;" />通过伏秒平衡定律可推导Buck电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=D$ ，其中 ${V_{out}}$ 为输出电压， $V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比。
+  <img src="image\buck_asynchronous_synchronous.png" alt="image-20230501022459277" style="zoom: 80%;" />通过伏秒平衡定律可推导Buck电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=D$ ，其中 ${V_{out}}$ 为输出电压， $V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比。
 - Boost升压。下图左侧为非同步Boost电路，MOSFET对地导通时为电感充能，二极管在此处起到续流和防倒灌作用。右侧为同步Boost电路。用MOSFET替代二极管，在适当的控制下实现了二极管的功能。
 
   <img src="image/boost_asynchronous_synchronous.png" alt="image-20230501023315945" style="zoom:80%;" />通过伏秒平衡定律可推导Boost电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=\frac{1}{D}$ ，其中 ${V_{out}}$ 为输出电压，$V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比（注意是上管）。
