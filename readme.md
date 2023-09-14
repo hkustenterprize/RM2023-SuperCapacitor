@@ -102,11 +102,11 @@
 
 - Buck降压。下图左侧为非同步Buck电路，肖特基二极管起到为电感续流的作用。右侧为同步Buck电路，用MOSFET替代了二极管，带来了更低的压降与更灵活的控制。同步Buck电路中，CCM模式下，MOSFET经过**控制**，能够在电流正向的时候导通、反向的时候断开，实现了二极管的功能。
 
-    ![buck_asynchronous_synchronous](image\buck_asynchronous_synchronous.png)通过伏秒平衡定律可推导Buck电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=D$ ，其中 ${V_{out}}$ 为输出电压， $V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比。
+    ![buck_asynchronous_synchronous](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/buck_asynchronous_synchronous.png)通过伏秒平衡定律可推导Buck电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=D$ ，其中 ${V_{out}}$ 为输出电压， $V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比。
 
 - Boost升压。下图左侧为非同步Boost电路，MOSFET对地导通时为电感充能，二极管在此处起到续流和防倒灌作用。右侧为同步Boost电路。用MOSFET替代二极管，在适当的控制下实现了二极管的功能。
 
-    ![boost_asynchronous_synchronous](image/boost_asynchronous_synchronous.png)通过伏秒平衡定律可推导Boost电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=\frac{1}{D}$ ，其中 ${V_{out}}$ 为输出电压，$V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比（注意是上管）。
+    ![boost_asynchronous_synchronous](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/boost_asynchronous_synchronous.png)通过伏秒平衡定律可推导Boost电路在CCM模式下的输入输出电压关系 $\frac{V_{out}}{V_{in}}=\frac{1}{D}$ ，其中 ${V_{out}}$ 为输出电压，$V_{in}$ 为输入电压， $D$ 为上管导通时间占整个PWM周期的占空比（注意是上管）。
 
   受限于篇幅，在此省略伏秒平衡定律的具体推导过程。
 
@@ -120,10 +120,10 @@
 
 - 若将RIGHT_H常导通，RIGHT_L常断开，而LEFT_H和LEFT_L继续使用如上的Buck电路控制策略，则等效电路图如下图。这就是完全等效于Buck的拓扑，此时可将电路看作同步Buck，可实现将左侧电降压后提供给右侧。
 
-  <img src="image/h_bridge_as_buck.png" alt="image-20230501021718554" style="zoom:50%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/h_bridge_as_buck.png" alt="image-20230501021718554" style="zoom:50%;" />
 - 若将LEFT_H常导通，LEFT_L常断开，而RIGHT_H和RIGHT_L继续使用如上的Boost电路控制策略，则等效电路如下图。这就是Boost的拓扑，此时将电路看作同步Boost即可实现将左侧电升压后提供给右侧。
 
-  <img src="image/h_bridge_as_boost.png" alt="image-20230501021718554" style="zoom:50%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/h_bridge_as_boost.png" alt="image-20230501021718554" style="zoom:50%;" />
 - 第三种情况是需要的左电压与右电压相近。此时实际应用中由于最大占空比以及死区时间等限制，很难独立的使用Buck或者Boost拓扑。于是考虑用Buck控制策略控制左半桥，用Boost控制策略控制右半桥，此即为buck-boost电路。在任意时刻，电路可视为Buck电路或Boost电路。（此处省略了一些细节，如为了防止两边的下管同时导通，左右两边的上管占空比应相互制约，同时相位也应错开）此时，无论是使用叠加原理还是通过伏秒平衡定律，我们都可以得到如下结果 $\frac{V_{left}}{V_{right}}=\frac{D_{right}}{D_{left}}$ ，其中， $D_{left}$ 为左侧上管占空比， $D_{right}$ 为右侧上管占空比。
 
 ### 假设电流从右往左流动
@@ -154,41 +154,41 @@
 
 ## 实物图
 
-<img src="image\img_controller.jpg" alt="img_controller" style="zoom:50%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_controller.jpg" alt="img_controller" style="zoom:50%;" />
 
 ## 硬件
 
 - 上下板组合
 
-  <img src="image\img_controller_interboard_connection.jpg" alt="img_controller_interboard_connection" style="zoom: 33%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_controller_interboard_connection.jpg" alt="img_controller_interboard_connection" style="zoom: 33%;" />
 
   - 上板为FR4四层板，负责控制与驱动，带有MCU、信号调理电路、MOS驱动、电流感应放大器电路、CAN通信电路，以及相应的供电电路等。
   - 下板负责功率部分，为铝基板。带有保险丝、MOSFET、扁线功率电感、固态电容以及采样电阻等，利用铝基板加强散热，使得超级电容控制模块可以持续输出15A以上大电流而保持凉爽。
   - 上下板通过矮排针排母连接。模块化的设计方便快速更换组件，也方便维修上板或下板。
   - 功率线路从下板直接引出，导线直接焊接在焊盘上，大电流不需要经过上下板连接处，因此可以使用一般的排针排母进行简单的连接。
 
-    <img src="image\img_controller_upper_board_SMT.jpg" alt="img_controller_upper_board_SMT" style="zoom: 33%;" />
+    <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_controller_upper_board_SMT.jpg" alt="img_controller_upper_board_SMT" style="zoom: 33%;" />
 
     *嘉立创贴片+手焊后的电容控制器上板*
   
-- MOS驱动为UCC27211。采用隔离供电取代UCC27211的自举电容，从而能够实现100%占空比常开上管，显著提高单边Buck/单边Boost的转换效率![sch_iso_mos_driver](image\sch_iso_mos_driver.png)
+- MOS驱动为UCC27211。采用隔离供电取代UCC27211的自举电容，从而能够实现100%占空比常开上管，显著提高单边Buck/单边Boost的转换效率![sch_iso_mos_driver](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_iso_mos_driver.png)
 
   - 通常，UCC27211使用一个自举电容串在引脚HB(BootStrap)与HS(Switching)之间，芯片自带自举电路，通过浮空自举电容来打开上管。这种做法体积小，但是自举电容需要充电，需要定期导通下管为电容充电来弥补自举电路及栅极驱动等的漏电电流，做不到100%占空比。因此实际上总是工作在buck-boost模式下。由于两侧MOSFET都需要不断开关，损失了一些效率。
   - 此处使用12V->12V DCDC的隔离供电模块。因为隔离供电模块为开环控制，输出电压极不稳定，且纹波极大，很容易炸毁栅极造成严重后果，所以此处使用RC滤波，并加入TVS(SMAJ10C)来钳位，保护上管不被高电压击穿。
   
-- 电流感应放大器所需的1.65V参考电压源由运放电路使用3.3V分压产生。使用阻容网络进行相位补偿，防止驱动容性负载时环路不稳定产生震荡。<img src="image\sch_1V65ref.png" alt="sch_1V65ref" style="zoom:80%;" />
+- 电流感应放大器所需的1.65V参考电压源由运放电路使用3.3V分压产生。使用阻容网络进行相位补偿，防止驱动容性负载时环路不稳定产生震荡。<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_1v65ref.png" alt="sch_1v65ref" style="zoom:80%;" />
 
 - 电流感应放大选择使用INA186差分放大器芯片
 
   在一众开源方案中，较多使用 INA240 作为电流感应放大器。然而INA240的价格与供应不如人意，在此背景下相关开发人员使用了 INA282 进行替代。但是，INA282 的封装为 SOIC-8，体积大，layout 占用过多空间。其次INA282 最小增益倍数为 50 倍，增益带宽较低，实际测试过程中出现信号失真的问题。 因此经过反复比对选型，最终使用了另一款电流感应放大器 INA186，选择其最低增益倍数的版本INA186A1。这款放大器体积小，支持双向电流采样，带宽也能达到标准，耐压能够支持高位采样的需求。但在实际测试过程中发现其对于共模干扰的抑制能力非常差，极易受到开关信号干扰。
 
-  <img src="image\scrshot_current_sense_noise_before_RC.png" alt="scrshot_current_sense_noise_before_RC" style="zoom:43%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/scrshot_current_sense_noise_before_RC.png" alt="scrshot_current_sense_noise_before_RC" style="zoom:43%;" />
 
   为应对此干扰，在实际电路设计中加入了 RC 滤波电路，截止频率13kHz，实测能够有效过滤共模干扰和电源本身的噪音。
 
-  <img src="image\sch_current_sense.png" alt="sch_current_sense" style="zoom: 50%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_current_sense.png" alt="sch_current_sense" style="zoom: 50%;" />
 
-  <img src="image\sch_current_sense_RC.png" alt="sch_current_sense_RC" style="zoom: 33%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_current_sense_RC.png" alt="sch_current_sense_RC" style="zoom: 33%;" />
 
   - INA186耐压高达42V，可以实现高位采样
   - 相比常用的INA240，INA186价格优势非常大，能显著节省整体成本
@@ -196,11 +196,11 @@
   
 - 使用全包裹铝壳，兼顾散热与保护
 
-  <img src="image\img_controller_lower_with_shell.jpg" alt="img_controller_lower_with_shell" style="zoom: 33%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_controller_lower_with_shell.jpg" alt="img_controller_lower_with_shell" style="zoom: 33%;" />
 
   *下板用导热胶贴在铝壳上，提高散热效果*
 
-  <img src="image\img_controller_shell.jpg" alt="img_controller_shell" style="zoom:33%;" />
+  <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_controller_shell.jpg" alt="img_controller_shell" style="zoom:33%;" />
 
   *大小对比（与装甲板相比）*
 
@@ -245,7 +245,7 @@
 
 #### HRTIM ADC Trigger
 
-<img src="image\HRTim_ADCTrigger1.jpg" alt="HRTim_ADC_Trigger1" style="zoom: 50%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/HRTim_ADCTrigger1.jpg" alt="HRTim_ADC_Trigger1" style="zoom: 50%;" />
 
 在电路实际工作过程中，MOSFET的开关会给电压带来纹波进而产生电流纹波。为防止MOSFET开关瞬间引入电流采样共模干扰，或产生的电流纹波影响采样，电流的采样时机应当正好处于对应侧上管PWM波形的中点，此时瞬时电流值等于平均电流值，瞬时电压值等于平均电压值。我们通过如下配置来实现这一功能。
 
@@ -394,11 +394,11 @@
 
 ## 原理图
 
-<img src="image\sch_cap_array_unit.png" alt="sch_cap_array_unit" style="zoom:50%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_cap_array_unit.png" alt="sch_cap_array_unit" style="zoom:50%;" />
 
 图为一个电容单元。设计的电容组中共有11个该单元串联。
 
-<img src="image\diagram_BW6101.png" alt="diagram_BW6101" style="zoom: 33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/diagram_BW6101.png" alt="diagram_BW6101" style="zoom: 33%;" />
 
 控制芯片为BW6101，该芯片在电容电压(VDD - GND)大于2.65V时，控制NMOS对地导通，此时电流通过泄流电阻对地泄放，从而消耗电容中过多的能量。
 
@@ -410,9 +410,9 @@
 
 ## PCB
 
-<img src="image\pcb_rendering_cap_array_top.png" alt="pcb_rendering_cap_array_top" style="zoom: 67%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/pcb_rendering_cap_array_top.png" alt="pcb_rendering_cap_array_top" style="zoom: 67%;" />
 
-<img src="image\pcb_rendering_cap_array_bottom.png" alt="pcb_rendering_cap_array_bottom" style="zoom:67%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/pcb_rendering_cap_array_bottom.png" alt="pcb_rendering_cap_array_bottom" style="zoom:67%;" />
 
 Layout 参考
 
@@ -420,11 +420,11 @@ Layout 参考
 
 ## 实物
 
-<img src="image\img_cap_array_bottom.jpg" alt="img_cap_array_bottom" style="zoom:33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_cap_array_bottom.jpg" alt="img_cap_array_bottom" style="zoom:33%;" />
 
-<img src="image\img_cap_array_top.jpg" alt="img_cap_array_top" style="zoom:33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_cap_array_top.jpg" alt="img_cap_array_top" style="zoom:33%;" />
 
-<img src="image\img_cap_array_bottom_2.jpg" alt="img_cap_array_bottom_2" style="zoom:33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_cap_array_bottom_2.jpg" alt="img_cap_array_bottom_2" style="zoom:33%;" />
 
 超级电容组体积仅为60x76x45mm，在经费有限无法定制的情况下实现了较小的体积，机械设计更加自由。
 
@@ -484,23 +484,23 @@ struct CapacitorStatus
 
 ### 极限转换效率
 
-<img src="image\img_best_converting_effiency.jpg" alt="image-20230911224919920" style="zoom: 50%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_best_converting_effiency.jpg" alt="image-20230911224919920" style="zoom: 50%;" />
 
-<img src="image\scrshot_best_converting_effiency.png" alt="scrshot_best_converting_effiency" style="zoom:33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/scrshot_best_converting_effiency.png" alt="scrshot_best_converting_effiency" style="zoom:33%;" />
 
 *极限效率0.975，一般效率约0.95*
 
 ### 输出纹波@5A
 
-<img src="image\img_buck_ripple_5A.jpeg" alt="img_buck_ripple_5A" style="zoom: 33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_buck_ripple_5A.jpeg" alt="img_buck_ripple_5A" style="zoom: 33%;" />
 
 *Buck模式，占空比0.7：纹波25mV*
 
-<img src="image\img_buck_boost_ripple_5A.jpeg" alt="img_buck_boost_ripple_5A" style="zoom: 33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_buck_boost_ripple_5A.jpeg" alt="img_buck_boost_ripple_5A" style="zoom: 33%;" />
 
 *Buck-Boost模式，“占空比”为1.0：纹波约50mV*
 
-<img src="image\img_boost_ripple_5A.jpg" alt="img_boost_ripple_5A" style="zoom:33%;" />
+<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_boost_ripple_5A.jpg" alt="img_boost_ripple_5A" style="zoom:33%;" />
 
 *Boost模式，占空比0.75，纹波32mV*
 
@@ -516,7 +516,7 @@ struct CapacitorStatus
 
 而运用其他DC-DC拓扑的控制器也可以研究，例如Flyback（反驰）拓扑升降压，理论上可以用更少的MOS管与更简单的驱动电路（仅低位驱动）来实现给电容充电放电等功能。
 
-![1694549124560](image/Report/1694549124560.png)
+![1694549124560](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/Report/1694549124560.png)
 
 ## 致谢
 
