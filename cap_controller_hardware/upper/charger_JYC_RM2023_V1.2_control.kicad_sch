@@ -10229,7 +10229,7 @@
     (property "Reference" "C18" (at 181.356 143.51 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "100nf" (at 181.356 148.59 0)
+    (property "Value" "100n" (at 181.356 148.59 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 181.3052 149.86 0)
