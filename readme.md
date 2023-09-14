@@ -1,11 +1,13 @@
-> 廉价，可靠，高效
-
 <div align='center'>
-    <font size="50"> RM2023香港科技大学ENTERPRIZE</font>
+    <h1>廉价，可靠，高效</h1>
 </div>
 
 <div align='center'>
-    <font size="80"> 数控超级电容方案开源</font>
+    <h2>RM2023香港科技大学ENTERPRIZE</h2>
+</div>
+
+<div align='center'>
+    <h1>数控超级电容方案开源</h1>
 </div>
 
 <div STYLE="page-break-after: always;"></div>
@@ -22,7 +24,7 @@
 
 在RoboMaster机甲大师赛事中，严苛的底盘功率限制规则迫使各参赛队伍从软件和硬件方面研究高效的功率管理方案。早在2018年末，大连交通大学TOE战队，桂林电子科技大学Evolution战队与香港科技大学ENTERPRIZE战队等便相继开源了各具特色的超级电容方案。2020年，官方裁判系统超级电容管理模块与相关限制规则加入，超级电容的使用更加规范化，给各战队带来了不小的挑战。
 
-2021赛季末大连理工凌_BUG战队开源了他们基于双向BUCK-BOOST电路构建的超级电容控制模块，引发广泛关注。我队取其精华，在其基础上进行数次迭代，历经一年时间，完成了低成本，稳定可靠，大功率，高效率的数控超级电容方案。本着技术交流和初心高于胜负的初衷我队现决定将此方案开源。欢迎大家交流学习。
+2021赛季末大连理工凌_BUG战队开源了他们基于双向BUCK-BOOST电路构建的超级电容控制模块，引发广泛关注。我队取其精华，在其基础上进行数次迭代，历经一年时间，完成了低成本，稳定可靠，大功率，高效率的数控超级电容方案。本着技术交流和初心高于胜负的初衷我队现决定将此方案开源，欢迎大家交流学习。
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -30,13 +32,13 @@
 
 自2018年超级电容方案诞生以来，其大致电路方案可分为以下3种
 
-1. $电源\Rightarrow恒功率充电模块\Rightarrow超级电容\Vert底盘电机$
-2. $电源\Rightarrow恒功率充电模块\Rightarrow超级电容\Rightarrow恒压放电模块\Leftrightarrow底盘电机$
-3. $电源\Vert底盘电机\Leftrightarrow双向可控功率模块\Leftrightarrow超级电容$
+1. 电源 $\Rightarrow$ 恒功率充电模块 $\Rightarrow$ 超级电容 $\Vert$ 底盘电机
+2. 电源 $\Rightarrow$ 恒功率充电模块 $\Rightarrow$ 超级电容 $\Rightarrow$ 恒压放电模块 $\Leftrightarrow$ 底盘电机
+3. 电源 $\Vert$ 底盘电机 $\Leftrightarrow$ 双向可控功率模块 $\Leftrightarrow$ 超级电容
 
 笔者将基于自身理解对这些方案进行简单优缺点分析
 
-## $电源 \Rightarrow 恒功率充电模块 \Rightarrow 超级电容\Vert底盘电机$
+## 电源  $\Rightarrow$  恒功率充电模块  $\Rightarrow$  超级电容 $\Vert$ 底盘电机
 
 本方案直接明了，通过恒功率充电模块对整个底盘的输入功率进行控制，并通过超级电容对能量进行缓存。
 
@@ -53,7 +55,7 @@
 4. 在机器人阵亡后，若电容仍有余电，底盘电机可能仍有足够电压继续移动一段时间，若不做处理可能违反规则
 5. 模块之间串联，若有模块损坏或异常断电，则机器人底盘直接掉电，无法继续移动
 
-## $电源\Rightarrow恒功率充电模块\Rightarrow超级电容\Rightarrow恒压放电模块\Leftrightarrow底盘电机$
+## 电源 $\Rightarrow$ 恒功率充电模块 $\Rightarrow$ 超级电容 $\Rightarrow$ 恒压放电模块 $\Leftrightarrow$ 底盘电机
 
 该方案在上个方案的基础上增加了一个恒压模块，以稳定底盘电机母线电压。
 
@@ -68,7 +70,7 @@
 2. 在机器人阵亡后，若电容仍有余电，底盘电机可能仍有足够电压继续移动一段时间，若不做处理可能违反规则
 3. 与上个方案一样，模块之间串联，若有模块损坏或异常断电，则机器人底盘直接掉电，无法继续移动。且由于恒压放电模块与底盘电机直接相连，工况较为恶劣，对该模块的设计有较大考验。
 
-## $电源\Vert底盘电机\Leftrightarrow双向可控功率模块\Leftrightarrow超级电容$
+## 电源 $\Vert$ 底盘电机 $\Leftrightarrow$ 双向可控功率模块 $\Leftrightarrow$ 超级电容
 
 该方案即为本战队本次开源的方案，灵感源自2021赛季大连理工大学凌BUG战队的开源。
 
@@ -93,7 +95,7 @@
 
 该方案的显著缺点如下：
 
-1. 采用数控方案，对嵌入式程序设计，控制系统设计要求较高，稍有不慎即可能损伤硬件。（本人调试时曾脑残将输出电压升至100V以上）
+1. 采用数控方案，对嵌入式程序设计，控制系统设计要求较高，稍有不慎即可能损伤硬件。（本人调试时曾不慎将输出电压升至100V以上）
 2. 采用并联方式被动补偿功率，若底盘电控不加以合理限制，仍有超功率风险。
 
 显然，在参赛队伍硬件实力足够的前提下，第三种方案相较于前两种有极大优势。我们本次开源的方案即基于第三种。
@@ -176,11 +178,31 @@
     <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/img_controller_upper_board_SMT.jpg" alt="img_controller_upper_board_SMT" style="zoom: 33%;" />
 
     *嘉立创贴片+手焊后的电容控制器上板*
-  
-- MOS驱动为UCC27211。采用隔离供电取代UCC27211的自举电容，从而能够实现100%占空比常开上管，显著提高单边Buck/单边Boost的转换效率![sch_iso_mos_driver](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_iso_mos_driver.png)
 
-  - 通常，UCC27211使用一个自举电容串在引脚HB(BootStrap)与HS(Switching)之间，芯片自带自举电路，通过浮空自举电容来打开上管。这种做法体积小，但是自举电容需要充电，需要定期导通下管为电容充电来弥补自举电路及栅极驱动等的漏电电流，做不到100%占空比。因此实际上总是工作在buck-boost模式下。由于两侧MOSFET都需要不断开关，损失了一些效率。
-  - 此处使用12V->12V DCDC的隔离供电模块。因为隔离供电模块为开环控制，输出电压极不稳定，且纹波极大，很容易炸毁栅极造成严重后果，所以此处使用RC滤波，并加入TVS(SMAJ10C)来钳位，保护上管不被高电压击穿。
+- 电感值计算
+
+  本方案设计最大电流为15A，考虑3A的纹波电流，假设电路足够理想，忽略详细的电感取值计算公式推导过程。
+  -  Buck模式下工作时，电感取值应满足 $L_{Buck}>{(\frac{V_{out}}{\Delta{I}\cdot{f}} \cdot (1 - D))}_ {max}$ 。其中， $V_{out}$ 为输出电压， $\Delta{I}$ 为纹波电流， $f$ 为开关频率， $D$ 为上管占空比。
+     分析可得，当输入电压最大(此时超级电容组作为电源输出，最大电压29.15V)，占空比为0.5时上式右侧取得最大值 ${\frac{29.15 \cdot 0.5}{3 \cdot 288000}} \cdot (1 - 0.5) = 8.434 uH$ 。因此，在Buck模式下，电感取值不应小于8.434uH。
+  -  Boost模式下工作时，电流流向反转，将上述公式中的 $V_{out}$ 输出电压换为 $V_{in}$ 输入电压，即得到 $L_{Boost}>{(\frac{V_{in}}{\Delta{I}\cdot{f}} \cdot (1 - D))}_ {max}$ 其中， $V_{in}$ 为输入电压， $\Delta{I}$ 为纹波电流， $f$ 为开关频率， $D$ 为上管占空比（注意是上管）。
+      分析可得，当输出电压最大(此时超级电容正好被充满电，最大电压29.15V)，占空比为0.5时上式右侧取得最大值 ${\frac{29.15 \cdot 0.5}{3 \cdot 288000}} \cdot (1 - 0.5) = 8.434 uH$ 。因此，在Boost模式下，电感取值不应小于8.434uH。
+  -  在不超过饱和电流的前提下，电感取值越大，纹波电流越小，留出一定余量，实际中使用饱和电流为21A，温升电流为30A的15uH的扁线电感。(实际上测试使用22uH饱和电流为14A，温升电流为30A的电感也可以工作，但出现了大电流下纹波明显增大的情况，保险起见最终选用了15uH电感，可考虑降低到10uH，选择更小的体积)
+ 
+- 电容值计算
+
+  考虑100mV的输出电压纹波，其余参数与计算电感时相同，假设电路足够理想，采用合适的近似方式，忽略详细的电容取值计算公式推导过程。
+  - Buck模式下工作时，电容取值应满足 $C_{Buck}>\frac{\Delta{I}}{8\cdot{f}\cdot{\Delta{V_{out}}}}$ 。其中， $V_{out}$ 为输出电压，$\Delta{I}$ 为纹波电流， $f$ 为开关频率， ${\Delta{V_{out}}}$ 为输出电压纹波。
+  计算可得，Buck模式下电容取值应大于 $\frac{3}{8\cdot{288000}\cdot{0.1}} = 13.02 uF$ 。因此，在Buck模式下，电容取值不应小于13.02uF。
+  - Boost模式下工作时，电容取值应满足 $C_{Boost}>{\frac{I_{out}\cdot{(1-D)}}{{f}\cdot{\Delta{V_{out}}}}}_ {max}$ 。 其中， $I_{out}$ 为输出电流，$D$ 为上管占空比， $f$ 为开关频率， ${\Delta{V_{out}}}$ 为输出电压纹波。
+  分析可得，当输出电流最大(15A)，上管占空比最小(软件限制为0.1)时右侧取得最大值 $\frac{15\cdot{(1-0.1)}}{{288000}\cdot{0.1}} = 468.75uF$ 因此，在Boost模式下，电容取值不应小于468.75uF。
+  - 理想情况下，电容取值越大，纹波电压越小，留出一定余量，并考虑到ESR影响，实际应用中，我们使用4个耐压100V，额定容量为10uF的陶瓷电容与3个耐压50V，容量为220uF的固态电容并联，总电容值约为 $4 \cdot 6 + 3 \cdot 220 = 684 uF$ (考虑陶瓷电容的直流偏压特性)。
+
+- MOSFET驱动方案
+
+  MOS驱动为UCC27211。采用隔离供电取代UCC27211的自举电容，从而能够实现100%占空比常开上管，显著提高单边Buck/单边Boost的转换效率![sch_iso_mos_driver](https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_iso_mos_driver.png)
+
+  - 通常，UCC27211使用一个自举电容串联在引脚HB(BootStrap)与HS(Switching)之间，芯片自带自举电路，通过浮空自举电容来打开上管。这种做法体积小，但是自举电容需要充电，需要定期导通下管为电容充电来弥补自举电路及栅极驱动等的漏电电流，做不到100%占空比。因此实际上总是工作在buck-boost模式下。由于两侧MOSFET都需要不断开关，损失了一些效率。
+  - 此处使用12V->12V DCDC的隔离供电模块。因为此隔离供电模块为开环控制，输出电压极不稳定，且纹波极大，很容易炸毁栅极造成严重后果，所以此处使用RC滤波，并加入TVS(SMAJ10C)来钳位，保护上管不被高电压击穿。
   
 - 电流感应放大器所需的1.65V参考电压源由运放电路使用3.3V分压产生。使用阻容网络进行相位补偿，防止驱动容性负载时环路不稳定产生震荡。<img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/sch_1v65ref.png" alt="sch_1v65ref" style="zoom:80%;" />
 
@@ -495,7 +517,7 @@ struct CapacitorStatus
 
 <img src="https://github.com/hkustenterprize/RM2023-SuperCapacitor/blob/master/image/scrshot_best_converting_effiency.png" alt="scrshot_best_converting_effiency" style="zoom:33%;" />
 
-*极限效率0.975，一般效率约0.95*
+*峰值效率0.978，一般效率约0.95*
 
 ### 输出纹波@5A
 
