@@ -1,3 +1,13 @@
+<div align='left'>
+    <h1> 本项目续作已开源 </h1>
+</div>
+
+请参考
+|||
+|-|-|
+|论坛|[【RM2024超级电容控制器完全开源】 (史上最详细的开源！)香港科技大学ENTERPRIZE战队](https://bbs.robomaster.com/article/54127)|
+|GitHub|[hkustenterprize/RM2024-SuperCapacitorController](https://github.com/hkustenterprize/RM2024-SuperCapacitorController)|
+
 <div align='center'>
     <h1>廉价，可靠，高效</h1>
 </div>
